@@ -13,6 +13,7 @@ typedef struct s_struct
 	int *redpill;
 	int sizered;
 	int sizemax;
+	int average;
 } matrix;
 
 void	matrix_init(matrix *pills, int argc, char **argv);
@@ -28,6 +29,8 @@ void	move_rr(matrix *pills);
 void	move_rra(matrix *pills);
 void	move_rrb(matrix *pills);
 void	move_rrr(matrix *pills);
-
+void	split_average(matrix *pills);
+void	split_sort(matrix *pills);
+void	linear_bluepill_sort(matrix *pills);
 
 #endif

@@ -10,6 +10,7 @@ void	matrix_init(matrix *pills, int argc, char **argv)
 	pills->sizered = 0;
 	pills->bluepill = (int *)malloc(sizeof(int) * argc);
 	pills->redpill = (int *)malloc(sizeof(int) * argc);
+	pills->average = 0;
 	while (i < argc)
 	{
 		pills->bluepill[i] = ft_atoi((const char *)argv[i + 1]);
@@ -43,21 +44,7 @@ int 	main(int argc, char **argv)
 
 	matrix_init(&pills, argc, argv);
 	read_pills(&pills);
-	move_sa(&pills);
-	read_pills(&pills);
-	move_pb(&pills);
-	move_pb(&pills);
-	move_pb(&pills);
-	read_pills(&pills);
-	move_rr(&pills);
-	read_pills(&pills);
-	move_rrr(&pills);
-	read_pills(&pills);
-	move_sa(&pills);
-	read_pills(&pills);
-	move_pa(&pills);
-	move_pa(&pills);
-	move_pa(&pills);
+	linear_bluepill_sort(&pills);
 	read_pills(&pills);
 	return (0);
 }
