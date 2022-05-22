@@ -1,201 +1,169 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   moves.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/22 02:16:12 by nsartral          #+#    #+#             */
+/*   Updated: 2022/05/22 04:40:39 by nsartral         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-void	move_sa(matrix *pills)
+void	ss(t_list *bluepill, t_list *redpill)
 {
-	int tmp;
-	if (pills->sizeblue > 1)
-	{
-		tmp = pills->bluepill[0];
-		pills->bluepill[0] = pills->bluepill[1];
-		pills->bluepill[1] = tmp;
-	}
+	sa(bluepill);
+	sb(redpill);
 }
 
-void	move_sb(matrix *pills)
+void	sb(t_list *redpill)
 {
-	int tmp;
-	if (pills->sizered > 1)
-	{
-		tmp = pills->redpill[0];
-		pills->redpill[0] = pills->redpill[1];
-		pills->redpill[1] = tmp;
-	}
-}
+	int	tmp;
 
-void	move_ss(matrix *pills)
-{
-	int tmp;
-	if (pills->sizeblue > 1)
-	{
-		tmp = pills->bluepill[0];
-		pills->bluepill[0] = pills->bluepill[1];
-		pills->bluepill[1] = tmp;
-	}
-	if (pills->sizered > 1)
-	{
-		tmp = pills->redpill[0];
-		pills->redpill[0] = pills->redpill[1];
-		pills->redpill[1] = tmp;
-	}
-}
-
-void	move_pa(matrix *pills)
-{
-	int i;
-	if (pills->sizered == 0)
+	if (ft_lstsize(redpill) < 2)
 		return ;
-	i = pills->sizeblue + 1;
-	pills->sizeblue++;
-	while (i > 0)
-	{
-		pills->bluepill[i] = pills->bluepill[i - 1];
-		i--;
-	}
-	pills->bluepill[i] = pills->redpill[i];
-	while (i < pills->sizered - 1)
-	{
-		pills->redpill[i] = pills->redpill[i + 1];
-		i++;
-	}
-	pills->redpill[i] = 0;
-	pills->sizered--;
+	tmp = redpill->content;
+	redpill->content = redpill->next->content;
+	redpill->next->content = tmp;
 }
 
-void	move_pb(matrix *pills)
+void	sa(t_list *bluepill)
 {
-	int i;
-	if (pills->sizeblue == 0)
+	int	tmp;
+
+	if (ft_lstsize(bluepill) < 2)
 		return ;
-	i = pills->sizered + 1;
-	pills->sizered++;
-	while (i > 0)
-	{
-		pills->redpill[i] = pills->redpill[i - 1];
-		i--;
-	}
-	pills->redpill[i] = pills->bluepill[i];
-	while (i < pills->sizeblue - 1)
-	{
-		pills->bluepill[i] = pills->bluepill[i + 1];
-		i++;
-	}
-	pills->bluepill[i] = 0;
-	pills->sizeblue--;
+	tmp = bluepill->content;
+	bluepill->content = bluepill->next->content;
+	bluepill->next->content = tmp;
 }
 
-void	move_ra(matrix *pills)
+void	pa(t_list **bluepill, t_list **redpill)
 {
-	int tmp;
-	int i;
-	i = 0;
-	tmp = pills->bluepill[0];
-	while (i < pills->sizeblue - 1)
+	t_list *tmp;	
+	if ((*redpill) == NULL)
+		return ;
+	if ((*bluepill) == NULL)
 	{
-		pills->bluepill[i] = pills->bluepill[i + 1];
-		i++;
+		(*bluepill) = ft_lstnew((*redpill)->content);
+		tmp = (*redpill);
+		(*redpill) = (*redpill)->next;
+		free(tmp);
+		return ;
 	}
-	pills->bluepill[i]= tmp;
+	tmp = ft_lstnew((*redpill)->content);
+	tmp->next = *bluepill;
+	*bluepill = tmp;
+	tmp = (*redpill);
+	(*redpill) = (*redpill)->next;
+	free(tmp);
 }
 
-void	move_rb(matrix *pills)
+void	pb(t_list **bluepill, t_list **redpill)
 {
-	int tmp;
-	int i;
-	i = 0;
-	tmp = pills->redpill[0];
-	while (i < pills->sizered - 1)
+	t_list *tmp;	
+	if ((*bluepill) == NULL)
+		return ;
+	if ((*redpill) == NULL)
 	{
-		pills->redpill[i] = pills->redpill[i + 1];
-		i++;
+		(*redpill) = ft_lstnew((*bluepill)->content);
+		tmp = (*bluepill);
+		(*bluepill) = (*bluepill)->next;
+		free(tmp);
+		return ;
 	}
-	pills->redpill[i]= tmp;
+	tmp = ft_lstnew((*bluepill)->content);
+	tmp->next = *redpill;
+	*redpill = tmp;
+	tmp = (*bluepill);
+	(*bluepill) = (*bluepill)->next;
+	free(tmp);
 }
 
-void	move_rr(matrix *pills)
+void	rr(t_list **bluepill, t_list **redpill)
 {
-	int tmp;
-	int i;
-	i = 0;
-	tmp = pills->bluepill[0];
-	while (i < pills->sizeblue - 1)
-	{
-		pills->bluepill[i] = pills->bluepill[i + 1];
-		i++;
-	}
-	pills->bluepill[i]= tmp;
-	i = 0;
-	tmp = pills->redpill[0];
-	while (i < pills->sizered - 1)
-	{
-		pills->redpill[i] = pills->redpill[i + 1];
-		i++;
-	}
-	pills->redpill[i]= tmp;
+	ra(bluepill);
+	rb(redpill);
 }
 
-void	move_rra(matrix *pills)
+void	rb(t_list **redpill)
 {
-	int tmp;
-	int i;
-	i = 0;
-	tmp = pills->bluepill[pills->sizeblue - 1];
-	i = pills->sizeblue - 1;
-	while (i > 0)
-	{
-		pills->bluepill[i] = pills->bluepill[i - 1];
-		i--;
-	}
-	pills->bluepill[0]= tmp;
+	t_list *tmp;
+	
+	if (*redpill == NULL)
+		return ;
+	tmp = *redpill;
+	while (tmp->next != NULL)
+		tmp = tmp->next;
+	tmp->next = ft_lstnew((*redpill)->content);
+	tmp = *redpill;
+	*redpill = (*redpill)->next;
+	free(tmp);
 }
 
-void	move_rrb(matrix *pills)
+void	ra(t_list **bluepill)
 {
-	int tmp;
-	int i;
-	i = 0;
-	tmp = pills->redpill[pills->sizered - 1];
-	i = pills->sizered - 1;
-	while (i > 0)
-	{
-		pills->redpill[i] = pills->redpill[i - 1];
-		i--;
-	}
-	pills->redpill[0]= tmp;
+	t_list *tmp;
+	
+	if (*bluepill == NULL)
+		return ;
+	tmp = *bluepill;
+	while (tmp->next != NULL)
+		tmp = tmp->next;
+	tmp->next = ft_lstnew((*bluepill)->content);
+	tmp = *bluepill;
+	*bluepill = (*bluepill)->next;
+	free(tmp);
 }
 
-void	move_rrr(matrix *pills)
+void	rrr(t_list **bluepill, t_list **redpill)
 {
-	int tmp;
-	int i;
-	i = 0;
-	tmp = pills->bluepill[pills->sizeblue - 1];
-	i = pills->sizeblue - 1;
-	while (i > 0)
-	{
-		pills->bluepill[i] = pills->bluepill[i - 1];
-		i--;
-	}
-	pills->bluepill[0]= tmp;
-	i = 0;
-	tmp = pills->redpill[pills->sizered - 1];
-	i = pills->sizered - 1;
-	while (i > 0)
-	{
-		pills->redpill[i] = pills->redpill[i - 1];
-		i--;
-	}
-	pills->redpill[0]= tmp;
+	rra(bluepill);
+	rrb(redpill);
 }
 
+void	rrb(t_list **redpill)
+{
+	t_list *tmp;
+	t_list *new;
+	
+	if (*redpill == NULL || (*redpill)->next == NULL)
+		return ;
+	tmp = *redpill;
+	
+	while (tmp->next != NULL)
+		tmp = tmp->next;
+	new = ft_lstnew(tmp->content);
+	new->next = (*redpill);
+	*redpill = new;
+	tmp = *redpill;
+	while (tmp->next->next != NULL)
+		tmp = tmp->next;
+	new = tmp->next;
+	tmp->next = NULL;
+	free(new);
+}
 
-
-
-
-
-
-
-
-
-
-
-
+void	rra(t_list **bluepill)
+{
+	t_list *tmp;
+	t_list *new;
+	
+	if (*bluepill == NULL || (*bluepill)->next == NULL)
+		return ;
+	tmp = *bluepill;
+	
+	while (tmp->next != NULL)
+		tmp = tmp->next;
+	new = ft_lstnew(tmp->content);
+	new->next = (*bluepill);
+	*bluepill = new;
+	tmp = *bluepill;
+	while (tmp->next->next != NULL)
+		tmp = tmp->next;
+	new = tmp->next;
+	tmp->next = NULL;
+	free(new);
+}

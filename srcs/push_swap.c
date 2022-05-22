@@ -1,50 +1,106 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/22 00:51:20 by nsartral          #+#    #+#             */
+/*   Updated: 2022/05/22 08:54:09 by nsartral         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-void	matrix_init(matrix *pills, int argc, char **argv)
+int	median_search(t_list *bluepill, int x)
 {
+	int n;
+	int m;
 	int i;
 	
-	i = 0;
-	pills->sizemax = argc - 1;
-	pills->sizeblue = argc - 1;
-	pills->sizered = 0;
-	pills->bluepill = (int *)malloc(sizeof(int) * argc);
-	pills->redpill = (int *)malloc(sizeof(int) * argc);
-	pills->average = 0;
-	while (i < argc)
+	n = 0;
+	m = 0;
+	while (bluepill != NULL)
 	{
-		pills->bluepill[i] = ft_atoi((const char *)argv[i + 1]);
-		i++;
+		if (bluepill->content >= x)
+			n++;
+		if (bluepill->content < x)
+			m++;
+		bluepill = bluepill->next;	
 	}
+	n--;
+	if (n >= m)
+		i = n - m;
+	if (m >= n)
+		i = m - n;
+	return (i);
 }
 
-void	read_pills(matrix *pills)
+int	is_median(t_list *bluepill)
 {
 	int i;
-	i = 0;
-	while (i < pills->sizemax)
+	int median;
+
+	i = 1;
+	median = 2000;
+	while (i <= ft_lstsize(bluepill))
 	{
-		if (i < pills->sizeblue)
-			ft_printf("%d", pills->bluepill[i]);
-		else 
-			ft_printf(" ");
-		if (i < pills->sizered)
-			ft_printf(" %d\n", pills->redpill[i]);
-		else
-			ft_printf("  \n");
+		if (median_search(bluepill, ft_lstcontent(bluepill, i)) < median)
+			median = median_search(bluepill, ft_lstcontent(bluepill, i));
 		i++;
 	}
-	ft_printf("- -\n");
-	ft_printf("a b\n\n");
+	return (median);
 }
 
-int 	main(int argc, char **argv)
+void	spliting(t_list **bluepill, t_list **redpill)
 {
-	matrix pills;
+	// int median;
+	int i;
+	// int n;
+	
+	(void)redpill;
+	// median = is_median(*bluepill);
+	ft_printf("\n\nBEGINNING\n");
+	printing(*bluepill, *redpill);
+	ft_printf("\n\n\n");
+	i = 0;
+	// n = ft_lstsize(*bluepill);
+	while (i < 4)
+	{
+		// if ((*bluepill)->content < median)
+			pb(bluepill, redpill);
+		// else
+		// 	ra(bluepill);
+	ft_printf("\n\nCEST LA\n");
+	printing(*bluepill, *redpill);
+	ft_printf("\n\n\n");
+	i++;
+	}
+	ft_printf("\n\nBASTA COSI\n");
+	printing(*bluepill, *redpill);
+	ft_printf("\n\n\n");
+}
 
-	matrix_init(&pills, argc, argv);
-	read_pills(&pills);
-	linear_bluepill_sort(&pills);
-	read_pills(&pills);
+int	main(int argc, char **argv)
+{
+	t_list	*bluepill;
+	t_list	*redpill;
+
+	if (argc == 1)
+		return (0);
+	if (argc < 3 || parsing(argv, &bluepill) == 0)
+	{
+		ft_printf("Error\n");
+		return (0);
+	}
+	parsing(argv, &bluepill);
+	redpill = NULL;
+	printing(bluepill, redpill);
+	ft_printf("\n\n");
+
+	spliting(&bluepill, &redpill);
+
+	printing(bluepill, redpill);
+	ft_printf("\n\n");
 	return (0);
 }

@@ -1,4 +1,4 @@
-SRCS			=	./srcs/push_swap.c ./srcs/moves.c ./srcs/sorting.c
+SRCS			=	./srcs/push_swap.c ./srcs/utils_lst.c ./srcs/utils_stack.c ./srcs/moves.c ./srcs/resolve.c
 
 OBJS			= 	$(SRCS:.c=.o)
 
@@ -13,7 +13,7 @@ NAME			= 	push_swap
 all:			$(NAME)
 
 $(NAME):		$(OBJS)
-				gcc $(CFLAGS) -o $(NAME) $(OBJS) $(LIBS)
+				gcc $(CFLAGS) -g3 -o $(NAME) $(OBJS) $(LIBS)
 				$(RM) $(OBJS)
 
 clean:
