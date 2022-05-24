@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/22 02:16:04 by nsartral          #+#    #+#             */
-/*   Updated: 2022/05/22 03:52:01 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/05/24 03:13:30 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	printing(t_list *bluepill, t_list *redpill)
 	{
 		if (bluepill != NULL && redpill != NULL)
 		{
-			ft_printf("%d %d\n", bluepill->content, redpill->content);
+			ft_printf("%d //  %d\n", bluepill->content, redpill->content);
 			bluepill = bluepill->next;
 			redpill = redpill->next;
 		}
@@ -34,7 +34,7 @@ void	printing(t_list *bluepill, t_list *redpill)
 		}
 		if (redpill != NULL && bluepill == NULL)
 		{
-			ft_printf("  %d\n", redpill->content);
+			ft_printf("  //  %d\n", redpill->content);
 			redpill = redpill->next;
 		}
 	}
@@ -43,7 +43,12 @@ void	printing(t_list *bluepill, t_list *redpill)
 	redpill = tmp_red;
 }
 
-int	parsing(char **argv, t_list **bluepill)
+int	parsing_one(char *str, t_list **bluepill)
+{
+
+}
+
+int	parsing_two(char **argv, t_list **bluepill)
 {
 	int			i;
 	t_list		*tmp;

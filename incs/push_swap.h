@@ -11,13 +11,22 @@ typedef struct s_list
 	struct s_list		*next;
 }						t_list;
 
+typedef struct s_struct
+{
+	int center;
+	int to_order;
+	int nb_one;
+	int nb_two;
+	int is_halved;
+}				t_struct;
+
 //UTILS_LST
 t_list		*ft_lstnew(int content);
 int			ft_lstsize(t_list *lst);
 int			ft_lstcontent(t_list *lst, int index);
 //UTILS_STACK
 void		printing(t_list *bluepill, t_list *redpill);
-int			parsing(char **argv, t_list **bluepill);
+int			parsing_two(char **argv, t_list **bluepill);
 //RESOLVE
 void	two_numbers(t_list **bluepill);
 //MOVES
@@ -32,5 +41,16 @@ void	ra(t_list **bluepill);
 void	rra(t_list **bluepill);
 void	rrb(t_list **redpill);
 void	rrr(t_list **bluepill, t_list **redpill);
+//SPLITING
+int	median_search(t_list *bluepill, int x);
+int	is_median(t_list *bluepill);
+void	spliting(t_list **bluepill, t_list **redpill);
+void	cover(t_list **bluepill, t_list **redpill);
+
+//NB_MOVE
+void	method_one(t_list *bluepill, t_struct *data);
+void	method_two(t_list *redpill, t_struct *data);
+void	apply_one(t_list **bluepill, t_list **redpill, t_struct *data);
+void	apply_two(t_list **bluepill, t_list **redpill, t_struct *data);
 
 #endif

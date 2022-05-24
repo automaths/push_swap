@@ -1,4 +1,4 @@
-SRCS			=	./srcs/push_swap.c ./srcs/utils_lst.c ./srcs/utils_stack.c ./srcs/moves.c ./srcs/resolve.c
+SRCS			=	./srcs/push_swap.c ./srcs/utils_lst.c ./srcs/utils_stack.c ./srcs/moves.c ./srcs/resolve.c ./srcs/spliting.c
 
 OBJS			= 	$(SRCS:.c=.o)
 
