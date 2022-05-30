@@ -19,6 +19,7 @@ typedef struct s_struct
 	int nb_two;
 	int is_halved;
 	int is_rrr;
+	int size_bits;
 }				t_struct;
 
 //UTILS_LST
