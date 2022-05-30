@@ -6,11 +6,43 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/22 00:51:32 by nsartral          #+#    #+#             */
-/*   Updated: 2022/05/30 02:51:53 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/05/30 23:18:38 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	ft_lstadd_back(t_list **lst, t_list *new)
+{
+	t_list	*list;
+
+	if (*lst)
+	{
+		list = *lst;
+		while (list->next)
+			list = list->next;
+		list->next = new;
+	}
+	else if (lst)
+		*lst = new;
+}
+
+t_list	*ft_lstmap(t_list *lst)
+{
+	t_list	*cpy;
+	t_list	*new;
+
+	new = NULL;
+	if (!lst)
+		return (NULL);
+	while (lst)
+	{
+		cpy = ft_lstnew(lst->content);
+		ft_lstadd_back(&new, cpy);
+		lst = lst->next;
+	}
+	return (new);
+}
 
 t_list	*ft_lstnew(int content)
 {

@@ -6,81 +6,93 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 02:44:38 by nsartral          #+#    #+#             */
-/*   Updated: 2022/05/30 02:45:14 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/05/30 23:39:07 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	median_search(t_list *bluepill, int x)
+static int	is_charset(char const *str, char charset)
+{
+	if (charset == *str)
+		return (1);
+	return (0);
+}
+
+static int	num_lines(char const *str, char charset)
 {
 	int	n;
-	int	m;
-	int	i;
 
 	n = 0;
-	m = 0;
-	while (bluepill != NULL)
+	while (*str)
 	{
-		if (bluepill->content >= x)
+		while (*str && is_charset(str, charset))
+			str++;
+		if (*str)
 			n++;
-		if (bluepill->content < x)
-			m++;
-		bluepill = bluepill->next;
+		while (*str && !is_charset(str, charset))
+			str++;
 	}
-	if (n > 0)
-		n--;
-	if (n >= m)
-		i = n - m;
-	else
-		i = m - n;
-	return (i);
+	return (n);
 }
 
-int	is_median(t_list *bluepill)
+static int	num_char(char const *str, char charset)
 {
-	int	i;
-	int	median;
-	int	max;
+	int	n;
 
-	i = 1;
-	max = 2000;
-	median = 0;
-	while (i <= ft_lstsize(bluepill))
+	n = 0;
+	while (*str && !is_charset(str, charset))
 	{
-		if (median_search(bluepill, ft_lstcontent(bluepill, i)) < max)
-		{
-			max = median_search(bluepill, ft_lstcontent(bluepill, i));
-			median = i;
-		}
-		i++;
+		str++;
+		n++;
 	}
-	return (median);
+	return (n);
 }
 
-void	spliting(t_list **bluepill, t_list **redpill)
+static char	*ft_fill(char const *str, char charset)
 {
-	int	median;
-	int	size;
-	int	i;
+	char	*ptr;
+	int		i;
+	int		n;
 
+	n = num_char(str, charset);
+	ptr = (char *)malloc(sizeof(char) * (n + 1));
+	if (ptr == NULL)
+		return (NULL);
+	ptr[n] = '\0';
 	i = 0;
-	if (is_median(*bluepill) == 0)
-		return ;
-	median = ft_lstcontent(*bluepill, is_median(*bluepill));
-	size = ft_lstsize(*bluepill);
-	while (i < size)
+	while (i < n)
 	{
-		if ((*bluepill)->content < median)
-			pb(bluepill, redpill);
-		else
-			ra(bluepill);
+		ptr[i] = str[i];
 		i++;
 	}
+	return (ptr);
 }
 
-void	cover(t_list **bluepill, t_list **redpill)
+char	**ft_split(char const *s, char c)
 {
-	while (ft_lstsize(*bluepill) != 0)
-		pb(bluepill, redpill);
+	char	**split;
+	int		n;
+	int		i;
+
+	n = num_lines(s, c);
+	split = (char **)malloc(sizeof(char *) * (n + 1));
+	if (split == NULL)
+		return (NULL);
+	split[n] = NULL;
+	i = 0;
+	while (*s)
+	{
+		while (*s && is_charset(s, c))
+			s++;
+		if (*s)
+		{
+			split[i] = ft_fill(s, c);
+			if (split[i++] == NULL)
+				return (NULL);
+		}
+		while (*s && !is_charset(s, c))
+			s++;
+	}
+	return (split);
 }

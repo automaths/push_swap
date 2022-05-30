@@ -6,76 +6,37 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/22 00:51:20 by nsartral          #+#    #+#             */
-/*   Updated: 2022/05/30 22:13:52 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/05/30 23:48:31 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int     to_power(int nb, int power)
+void	cover(t_list **bluepill, t_list **redpill)
 {
-    int     x;
-
-    if (power == 0)
-        return (1);
-    x = 1;
-    while (power >= 1)
-    {
-        x *= nb;
-        power--;
-    }
-    return (x);
+	while (ft_lstsize(*redpill) != 0)
+		pa(bluepill, redpill);
 }
 
-int	find_max_rank(t_list *bluepill)
+void	sorting(t_list **bluepill, t_list **redpill, t_struct *data)
 {
-	int max;
-	
-	max = 0;
-	while (bluepill != NULL)
+	int	size;
+	int	size_max;
+
+	size_max = 0;
+	while (size_max < data->size_bits)
 	{
-		if (bluepill->content > max)
-			max = bluepill->content;
-		bluepill = bluepill->next;
-	}
-	return (max);
-}
-
-int	find_bit_max(t_list *bluepill)
-{
-	int max;
-	int i;
-	
-	i = 1;
-	max = find_max_rank(bluepill);
-	while ((to_power(2, i - 1) > max) || ((to_power(2, i) - 1) < max))
-		i++;
-	return (i);
-}
-
-int		find_rank(t_list *bluepill, int content)
-{
-	int rank;
-	
-	rank = 1;
-	while (bluepill != NULL)
-	{
-		if (bluepill->content < content)
-			rank++;
-		bluepill = bluepill->next;
-	}
-	return (rank);
-}
-
-void	rank_convert(t_list **bluepill)
-{
-	t_list *tmp;
-	
-	tmp = *bluepill;
-	while (tmp != NULL)
-	{
-		tmp->content = find_rank(*bluepill, tmp->content);
-		tmp = tmp->next;
+		size = data->bluepill_size;
+		while (size > 0)
+		{
+			if (((*bluepill)->content >> size_max) & (1 == 1))
+				ra(bluepill);
+			else
+				pb(bluepill, redpill);
+			size--;
+		}
+		cover(bluepill, redpill);
+		size_max++;
 	}
 }
 
@@ -84,11 +45,9 @@ void	solving(t_list **bluepill, t_list **redpill, t_struct *data)
 	(void)data;
 	data->is_rrr = 0;
 	rank_convert(bluepill);
-	printing(*bluepill, *redpill);
-	ft_printf("\n\n");
 	data->size_bits = find_bit_max(*bluepill);
-	ft_printf("\nthe bit max is: %d\n", data->size_bits);
-	
+	data->bluepill_size = ft_lstsize(*bluepill);
+	sorting(bluepill, redpill, data);
 }
 
 int	main(int argc, char **argv)

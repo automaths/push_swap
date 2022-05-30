@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/22 02:16:12 by nsartral          #+#    #+#             */
-/*   Updated: 2022/05/30 03:23:07 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/05/30 23:44:28 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	ss(t_list *bluepill, t_list *redpill)
 	{
 		tmp = redpill->content;
 		redpill->content = redpill->next->content;
-		redpill->next->content = tmp;	
+		redpill->next->content = tmp;
 	}
 	ft_printf("ss\n");
 }
@@ -50,10 +50,10 @@ void	sa(t_list *bluepill)
 
 	if (ft_lstsize(bluepill) >= 2)
 	{
-	tmp = bluepill->content;
-	bluepill->content = bluepill->next->content;
-	bluepill->next->content = tmp;
-	ft_printf("sa\n");
+		tmp = bluepill->content;
+		bluepill->content = bluepill->next->content;
+		bluepill->next->content = tmp;
+		ft_printf("sa\n");
 	}
 }
 

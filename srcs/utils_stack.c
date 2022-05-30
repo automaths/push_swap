@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/22 02:16:04 by nsartral          #+#    #+#             */
-/*   Updated: 2022/05/30 03:27:48 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/05/30 23:50:59 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,40 +33,9 @@ int	check_duplicates(t_list **bluepill)
 	return (1);
 }
 
-void	printing(t_list *bluepill, t_list *redpill)
-{
-	t_list	*tmp_blue;
-	t_list	*tmp_red;
-
-	tmp_blue = bluepill;
-	tmp_red = redpill;
-	while (bluepill != NULL || redpill != NULL)
-	{
-		if (bluepill != NULL && redpill != NULL)
-		{
-			ft_printf("%d //  %d\n", bluepill->content, redpill->content);
-			bluepill = bluepill->next;
-			redpill = redpill->next;
-		}
-		if (bluepill != NULL && redpill == NULL)
-		{
-			ft_printf("%d\n", bluepill->content);
-			bluepill = bluepill->next;
-		}
-		if (redpill != NULL && bluepill == NULL)
-		{
-			ft_printf("  //  %d\n", redpill->content);
-			redpill = redpill->next;
-		}
-	}
-	ft_printf ("- -\na b");
-	bluepill = tmp_blue;
-	redpill = tmp_red;
-}
-
 int	parsing_one(char *str, t_list **bluepill)
 {
-	char	**split;
+	char		**split;
 	int			i;
 	t_list		*tmp;
 
