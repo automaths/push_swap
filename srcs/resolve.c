@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 02:52:01 by nsartral          #+#    #+#             */
-/*   Updated: 2022/05/30 02:52:31 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/05/30 03:11:53 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	apply_one(t_list **bluepill, t_list **redpill, t_struct *data)
 	i = 1;
 	while (i < data->nb_one)
 	{
-		rra(bluepill);
+		rra(bluepill, data);
 		i++;
 	}
 }
@@ -80,7 +80,7 @@ void	apply_two(t_list **bluepill, t_list **redpill, t_struct *data)
 	i = 1;
 	while (i < data->nb_two)
 	{
-		rrb(redpill);
+		rrb(redpill, data);
 		i++;
 	}
 }

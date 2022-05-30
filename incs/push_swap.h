@@ -18,6 +18,7 @@ typedef struct s_struct
 	int nb_one;
 	int nb_two;
 	int is_halved;
+	int is_rrr;
 }				t_struct;
 
 //UTILS_LST
@@ -40,9 +41,9 @@ void	pb(t_list **bluepill, t_list **redpill);
 void	rr(t_list **bluepill, t_list **redpill);
 void	rb(t_list **redpill);
 void	ra(t_list **bluepill);
-void	rra(t_list **bluepill);
-void	rrb(t_list **redpill);
-void	rrr(t_list **bluepill, t_list **redpill);
+void	rra(t_list **bluepill, t_struct *data);
+void	rrb(t_list **redpill, t_struct *data);
+void	rrr(t_list **bluepill, t_list **redpill, t_struct *data);
 //SPLITING
 int	median_search(t_list *bluepill, int x);
 int	is_median(t_list *bluepill);

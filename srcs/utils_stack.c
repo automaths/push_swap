@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/22 02:16:04 by nsartral          #+#    #+#             */
-/*   Updated: 2022/05/30 02:44:24 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/05/30 03:27:48 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,26 @@ void	printing(t_list *bluepill, t_list *redpill)
 int	parsing_one(char *str, t_list **bluepill)
 {
 	char	**split;
+	int			i;
+	t_list		*tmp;
 
 	split = ft_split(str, ' ');
-	if (parsing_two(split, bluepill) == 0)
+	*bluepill = ft_lstnew(ft_atoi(split[0]));
+	tmp = *bluepill;
+	i = 1;
+	while (split[i])
+	{
+		if (ft_atoi(split[i]) == 0 && (split[i][0] != '0'
+			|| ft_strlen(split[i]) != 1))
+			return (0);
+		(*bluepill)->next = ft_lstnew(ft_atoi(split[i]));
+		if ((*bluepill)->next == NULL)
+			return (0);
+		(*bluepill) = (*bluepill)->next;
+		i++;
+	}
+	*bluepill = tmp;
+	if (check_duplicates(bluepill) == 0)
 		return (0);
 	return (1);
 }

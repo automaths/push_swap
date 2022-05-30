@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/22 02:16:12 by nsartral          #+#    #+#             */
-/*   Updated: 2022/05/30 02:53:36 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/05/30 03:23:07 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,47 @@
 
 void	ss(t_list *bluepill, t_list *redpill)
 {
-	sa(bluepill);
-	sb(redpill);
+	int	tmp;
+
+	if (ft_lstsize(bluepill) >= 2)
+	{
+	tmp = bluepill->content;
+	bluepill->content = bluepill->next->content;
+	bluepill->next->content = tmp;
+	}
+	if (ft_lstsize(redpill) >= 2)
+	{
+		tmp = redpill->content;
+		redpill->content = redpill->next->content;
+		redpill->next->content = tmp;	
+	}
+	ft_printf("ss\n");
 }
 
 void	sb(t_list *redpill)
 {
 	int	tmp;
 
-	if (ft_lstsize(redpill) < 2)
-		return ;
-	tmp = redpill->content;
-	redpill->content = redpill->next->content;
-	redpill->next->content = tmp;
+	if (ft_lstsize(redpill) >= 2)
+	{
+		tmp = redpill->content;
+		redpill->content = redpill->next->content;
+		redpill->next->content = tmp;
+		ft_printf("sb\n");
+	}
 }
 
 void	sa(t_list *bluepill)
 {
 	int	tmp;
 
-	if (ft_lstsize(bluepill) < 2)
-		return ;
+	if (ft_lstsize(bluepill) >= 2)
+	{
 	tmp = bluepill->content;
 	bluepill->content = bluepill->next->content;
 	bluepill->next->content = tmp;
+	ft_printf("sa\n");
+	}
 }
 
 void	pa(t_list **bluepill, t_list **redpill)
@@ -52,6 +69,7 @@ void	pa(t_list **bluepill, t_list **redpill)
 		tmp = (*redpill);
 		(*redpill) = (*redpill)->next;
 		free(tmp);
+		ft_printf("pa\n");
 		return ;
 	}
 	tmp = ft_lstnew((*redpill)->content);
@@ -60,6 +78,7 @@ void	pa(t_list **bluepill, t_list **redpill)
 	tmp = (*redpill);
 	(*redpill) = (*redpill)->next;
 	free(tmp);
+	ft_printf("pa\n");
 }
 
 void	pb(t_list **bluepill, t_list **redpill)
@@ -74,6 +93,7 @@ void	pb(t_list **bluepill, t_list **redpill)
 		tmp = (*bluepill);
 		(*bluepill) = (*bluepill)->next;
 		free(tmp);
+		ft_printf("pb\n");
 		return ;
 	}
 	tmp = ft_lstnew((*bluepill)->content);
@@ -82,4 +102,5 @@ void	pb(t_list **bluepill, t_list **redpill)
 	tmp = (*bluepill);
 	(*bluepill) = (*bluepill)->next;
 	free(tmp);
+	ft_printf("pb\n");
 }

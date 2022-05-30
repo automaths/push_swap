@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 02:49:33 by nsartral          #+#    #+#             */
-/*   Updated: 2022/05/30 02:51:34 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/05/30 03:11:09 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	rb(t_list **redpill)
 	tmp = *redpill;
 	*redpill = (*redpill)->next;
 	free(tmp);
+	ft_printf("rb\n");
 }
 
 void	ra(t_list **bluepill)
@@ -40,15 +41,19 @@ void	ra(t_list **bluepill)
 	tmp = *bluepill;
 	*bluepill = (*bluepill)->next;
 	free(tmp);
+	ft_printf("ra\n");
 }
 
-void	rrr(t_list **bluepill, t_list **redpill)
+void	rrr(t_list **bluepill, t_list **redpill, t_struct *data)
 {
-	rra(bluepill);
-	rrb(redpill);
+	data->is_rrr = 1;
+	rra(bluepill, data);
+	rrb(redpill, data);
+	ft_printf("rrr\n");
+	data->is_rrr = 0;
 }
 
-void	rrb(t_list **redpill)
+void	rrb(t_list **redpill, t_struct *data)
 {
 	t_list	*tmp;
 	t_list	*new;
@@ -67,9 +72,12 @@ void	rrb(t_list **redpill)
 	new = tmp->next;
 	tmp->next = NULL;
 	free(new);
+	if (data->is_rrr == 1)
+		return ;
+	ft_printf("rrb\n");
 }
 
-void	rra(t_list **bluepill)
+void	rra(t_list **bluepill, t_struct *data)
 {
 	t_list	*tmp;
 	t_list	*new;
@@ -88,4 +96,7 @@ void	rra(t_list **bluepill)
 	new = tmp->next;
 	tmp->next = NULL;
 	free(new);
+	if (data->is_rrr == 1)
+		return ;
+	ft_printf("rra\n");
 }

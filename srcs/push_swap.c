@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/22 00:51:20 by nsartral          #+#    #+#             */
-/*   Updated: 2022/05/30 02:54:34 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/05/30 03:28:17 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,15 @@
 
 void	solving(t_list **bluepill, t_list **redpill, t_struct *data)
 {
+	// printing(*bluepill, *redpill);
+	// ft_printf("\n\n");
 	spliting(bluepill, redpill);
+	// printing(*bluepill, *redpill);
+	// ft_printf("\n\n");
+	data->is_rrr = 0;
 	data->center = ft_lstsize(*bluepill);
+	// printing(*bluepill, *redpill);
+	// ft_printf("\n\n");
 	cover(bluepill, redpill);
 	while (*redpill != NULL)
 	{
@@ -25,15 +32,15 @@ void	solving(t_list **bluepill, t_list **redpill, t_struct *data)
 		if (data->nb_one <= data->nb_two)
 		{
 			apply_one(bluepill, redpill, data);
-			ft_printf("\nMETHOD ONE\n");
+			// ft_printf("\nMETHOD ONE\n");
 		}
 		else
 		{
 			apply_two(bluepill, redpill, data);
-			ft_printf("\nMETHOD TWO\n");
+			// ft_printf("\nMETHOD TWO\n");
 		}
-		printing(*bluepill, *redpill);
-		ft_printf("\n\n");
+		// printing(*bluepill, *redpill);
+		// ft_printf("\n\n");
 	}
 }
 
