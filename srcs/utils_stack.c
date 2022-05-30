@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/22 02:16:04 by nsartral          #+#    #+#             */
-/*   Updated: 2022/05/30 01:00:46 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/05/30 02:13:22 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,16 @@ void	printing(t_list *bluepill, t_list *redpill)
 	ft_printf ("- -\na b");
 	bluepill = tmp_blue;
 	redpill = tmp_red;
+}
+
+int	parsing_one(char *str, t_list **bluepill)
+{
+	char **split;
+	
+	split = ft_split(str, ' ');
+	if (parsing_two(split, bluepill) == 0)
+		return (0);
+	return (1);
 }
 
 int	parsing_two(char **argv, t_list **bluepill)

@@ -27,6 +27,8 @@ int			ft_lstcontent(t_list *lst, int index);
 //UTILS_STACK
 void		printing(t_list *bluepill, t_list *redpill);
 int			parsing_two(char **argv, t_list **bluepill);
+int			parsing_one(char *str, t_list **bluepill);
+char		**ft_split(char const *s, char c);
 //RESOLVE
 void	two_numbers(t_list **bluepill);
 //MOVES
