@@ -1,11 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   spliting.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/30 02:44:38 by nsartral          #+#    #+#             */
+/*   Updated: 2022/05/30 02:45:14 by nsartral         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 int	median_search(t_list *bluepill, int x)
 {
-	int n;
-	int m;
-	int i;
-	
+	int	n;
+	int	m;
+	int	i;
+
 	n = 0;
 	m = 0;
 	while (bluepill != NULL)
@@ -14,7 +26,7 @@ int	median_search(t_list *bluepill, int x)
 			n++;
 		if (bluepill->content < x)
 			m++;
-		bluepill = bluepill->next;	
+		bluepill = bluepill->next;
 	}
 	if (n > 0)
 		n--;
@@ -27,9 +39,9 @@ int	median_search(t_list *bluepill, int x)
 
 int	is_median(t_list *bluepill)
 {
-	int i;
-	int median;
-	int max;
+	int	i;
+	int	median;
+	int	max;
 
 	i = 1;
 	max = 2000;
@@ -48,10 +60,10 @@ int	is_median(t_list *bluepill)
 
 void	spliting(t_list **bluepill, t_list **redpill)
 {
-	int median;
-	int size;
-	int i;
-	
+	int	median;
+	int	size;
+	int	i;
+
 	i = 0;
 	if (is_median(*bluepill) == 0)
 		return ;

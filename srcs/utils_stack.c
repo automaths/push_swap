@@ -6,11 +6,32 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/22 02:16:04 by nsartral          #+#    #+#             */
-/*   Updated: 2022/05/30 02:13:22 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/05/30 02:44:24 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int	check_duplicates(t_list **bluepill)
+{
+	t_list	*tmp_one;
+	t_list	*tmp_two;
+
+	tmp_one = *bluepill;
+	while (tmp_one->next != NULL)
+	{
+		tmp_two = tmp_one;
+		tmp_two = tmp_two->next;
+		while (tmp_two != NULL)
+		{
+			if (tmp_one->content == tmp_two->content)
+				return (0);
+			tmp_two = tmp_two->next;
+		}
+		tmp_one = tmp_one->next;
+	}
+	return (1);
+}
 
 void	printing(t_list *bluepill, t_list *redpill)
 {
@@ -45,8 +66,8 @@ void	printing(t_list *bluepill, t_list *redpill)
 
 int	parsing_one(char *str, t_list **bluepill)
 {
-	char **split;
-	
+	char	**split;
+
 	split = ft_split(str, ' ');
 	if (parsing_two(split, bluepill) == 0)
 		return (0);
@@ -73,5 +94,7 @@ int	parsing_two(char **argv, t_list **bluepill)
 		i++;
 	}
 	*bluepill = tmp;
+	if (check_duplicates(bluepill) == 0)
+		return (0);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/22 00:51:32 by nsartral          #+#    #+#             */
-/*   Updated: 2022/05/22 07:46:56 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/05/30 02:51:53 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ int	ft_lstsize(t_list *lst)
 
 int	ft_lstcontent(t_list *lst, int index)
 {
-	int i;
-	
+	int	i;
+
 	i = 0;
 	while (lst != NULL && i < index - 1)
 	{

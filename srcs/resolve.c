@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   resolve.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/30 02:52:01 by nsartral          #+#    #+#             */
+/*   Updated: 2022/05/30 02:52:31 by nsartral         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	method_one(t_list *bluepill, t_struct *data)
@@ -13,8 +25,9 @@ void	method_one(t_list *bluepill, t_struct *data)
 
 void	method_two(t_list *redpill, t_struct *data)
 {
-	int max;
-	int n;
+	int	max;
+	int	n;
+
 	max = -2147483648;
 	data->nb_two = 0;
 	n = 1;
@@ -34,7 +47,8 @@ void	method_two(t_list *redpill, t_struct *data)
 
 void	apply_one(t_list **bluepill, t_list **redpill, t_struct *data)
 {
-	int i;
+	int	i;
+
 	i = 1;
 	while (i < data->nb_one)
 	{
@@ -52,7 +66,8 @@ void	apply_one(t_list **bluepill, t_list **redpill, t_struct *data)
 
 void	apply_two(t_list **bluepill, t_list **redpill, t_struct *data)
 {
-	int i;
+	int	i;
+
 	i = 1;
 	while (i < data->nb_two)
 	{
