@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 23:44:49 by nsartral          #+#    #+#             */
-/*   Updated: 2022/05/30 23:53:05 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/05/31 02:03:06 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ void		ft_lstadd_back(t_list **lst, t_list *new);
 int			check_duplicates(t_list **bluepill);
 int			parsing_two(char **argv, t_list **bluepill);
 int			parsing_one(char *str, t_list **bluepill);
-
 
 void		printing(t_list *bluepill, t_list *redpill);
 
