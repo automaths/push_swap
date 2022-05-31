@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/22 02:16:12 by nsartral          #+#    #+#             */
-/*   Updated: 2022/05/30 23:44:28 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/05/31 06:00:08 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,20 +57,22 @@ void	sa(t_list *bluepill)
 	}
 }
 
-void	pa(t_list **bluepill, t_list **redpill)
+int	pa(t_list **bluepill, t_list **redpill)
 {
 	t_list	*tmp;
 
 	if ((*redpill) == NULL)
-		return ;
+		return (1);
 	if ((*bluepill) == NULL)
 	{
 		(*bluepill) = ft_lstnew((*redpill)->content);
+		if (*bluepill == NULL)
+			return (0);
 		tmp = (*redpill);
 		(*redpill) = (*redpill)->next;
 		free(tmp);
 		ft_printf("pa\n");
-		return ;
+		return (1);
 	}
 	tmp = ft_lstnew((*redpill)->content);
 	tmp->next = *bluepill;
@@ -79,22 +81,25 @@ void	pa(t_list **bluepill, t_list **redpill)
 	(*redpill) = (*redpill)->next;
 	free(tmp);
 	ft_printf("pa\n");
+	return (1);
 }
 
-void	pb(t_list **bluepill, t_list **redpill)
+int	pb(t_list **bluepill, t_list **redpill)
 {
 	t_list	*tmp;
 
 	if ((*bluepill) == NULL)
-		return ;
+		return (1);
 	if ((*redpill) == NULL)
 	{
 		(*redpill) = ft_lstnew((*bluepill)->content);
+		if (*redpill == NULL)
+			return (0);
 		tmp = (*bluepill);
 		(*bluepill) = (*bluepill)->next;
 		free(tmp);
 		ft_printf("pb\n");
-		return ;
+		return (1);
 	}
 	tmp = ft_lstnew((*bluepill)->content);
 	tmp->next = *redpill;
@@ -103,4 +108,5 @@ void	pb(t_list **bluepill, t_list **redpill)
 	(*bluepill) = (*bluepill)->next;
 	free(tmp);
 	ft_printf("pb\n");
+	return (1);
 }

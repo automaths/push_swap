@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   special_case_two.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/31 04:48:45 by nsartral          #+#    #+#             */
+/*   Updated: 2022/05/31 05:56:00 by nsartral         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	sort_two(t_list **bluepill)
@@ -8,37 +20,50 @@ void	sort_two(t_list **bluepill)
 		return ;
 }
 
-void	sort_three(t_list **bluepill, t_struct *data)
+void	sort_three_one(t_list **bluepill, t_struct *data)
 {
-	if (((*bluepill)->content > (*bluepill)->next->content) && ((*bluepill)->next->content < (*bluepill)->next->next->content) && ((*bluepill)->content < (*bluepill)->next->next->content))
+	if (((*bluepill)->content > (*bluepill)->next->content)
+		&& ((*bluepill)->next->content < (*bluepill)->next->next->content)
+		&& ((*bluepill)->content < (*bluepill)->next->next->content))
 	{
 		sa(*bluepill);
 		return ;
 	}
-	if (((*bluepill)->content > (*bluepill)->next->content) && ((*bluepill)->next->content > (*bluepill)->next->next->content) && ((*bluepill)->content > (*bluepill)->next->next->content))
+	if (((*bluepill)->content > (*bluepill)->next->content)
+		&& ((*bluepill)->next->content > (*bluepill)->next->next->content)
+		&& ((*bluepill)->content > (*bluepill)->next->next->content))
 	{
 		sa(*bluepill);
 		rra(bluepill, data);
 		return ;
 	}
-	if (((*bluepill)->content > (*bluepill)->next->content) && ((*bluepill)->next->content < (*bluepill)->next->next->content) && ((*bluepill)->content > (*bluepill)->next->next->content))
+	if (((*bluepill)->content > (*bluepill)->next->content)
+		&& ((*bluepill)->next->content < (*bluepill)->next->next->content)
+		&& ((*bluepill)->content > (*bluepill)->next->next->content))
 	{
 		ra(bluepill);
 		return ;
 	}
-	if (((*bluepill)->content < (*bluepill)->next->content) && ((*bluepill)->next->content > (*bluepill)->next->next->content) && ((*bluepill)->content < (*bluepill)->next->next->content))
+}
+
+void	sort_three_two(t_list **bluepill, t_struct *data)
+{
+	if (((*bluepill)->content < (*bluepill)->next->content)
+		&& ((*bluepill)->next->content > (*bluepill)->next->next->content)
+		&& ((*bluepill)->content < (*bluepill)->next->next->content))
 	{
 		sa(*bluepill);
 		ra(bluepill);
 		return ;
 	}
-	if (((*bluepill)->content < (*bluepill)->next->content) && ((*bluepill)->next->content > (*bluepill)->next->next->content) && ((*bluepill)->content > (*bluepill)->next->next->content))
+	if (((*bluepill)->content < (*bluepill)->next->content)
+		&& ((*bluepill)->next->content > (*bluepill)->next->next->content)
+		&& ((*bluepill)->content > (*bluepill)->next->next->content))
 	{
 		rra(bluepill, data);
 		return ;
 	}
 }
-
 
 void	method_one(t_list *bluepill, t_struct *data)
 {
@@ -60,7 +85,8 @@ void	apply_one(t_list **bluepill, t_list **redpill, t_struct *data)
 		ra(bluepill);
 		i++;
 	}
-	pa(bluepill, redpill);
+	if (pa(bluepill, redpill) == 0)
+		return ;
 	i = 0;
 	while (i < data->nb_one)
 	{

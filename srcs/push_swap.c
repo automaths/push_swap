@@ -6,16 +6,24 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/22 00:51:20 by nsartral          #+#    #+#             */
-/*   Updated: 2022/05/31 03:26:36 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/05/31 05:58:45 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	cover(t_list **bluepill, t_list **redpill)
+int	cover(t_list **bluepill, t_list **redpill)
 {
+	int	check;
+
+	check = 1;
 	while (ft_lstsize(*redpill) != 0)
-		pa(bluepill, redpill);
+	{
+		check = pa(bluepill, redpill);
+		if (check == 0)
+			return (0);
+	}
+	return (1);
 }
 
 void	sorting(t_list **bluepill, t_list **redpill, t_struct *data)
@@ -32,10 +40,14 @@ void	sorting(t_list **bluepill, t_list **redpill, t_struct *data)
 			if (((*bluepill)->content >> size_max) & (1 == 1))
 				ra(bluepill);
 			else
-				pb(bluepill, redpill);
+			{
+				if (pb(bluepill, redpill) == 0)
+					return ;
+			}
 			size--;
 		}
-		cover(bluepill, redpill);
+		if (cover(bluepill, redpill) == 0)
+			return ;
 		size_max++;
 	}
 }
@@ -55,28 +67,6 @@ void	solving(t_list **bluepill, t_list **redpill, t_struct *data)
 	sorting(bluepill, redpill, data);
 }
 
-void	freeing(t_list **bluepill, t_list **redpill)
-{
-	t_list *tmp;
-	while (*bluepill != NULL)
-	{
-		tmp = *bluepill;
-		*bluepill = (*bluepill)->next;
-		free(tmp);
-	}
-	while (*redpill != NULL)
-	{
-		tmp = *redpill;
-		*redpill = (*redpill)->next;
-		free(tmp);
-	}
-	if (*bluepill)
-		free(*bluepill);
-	if (*redpill)
-		free(*redpill);
-}
-
-
 int	main(int argc, char **argv)
 {
 	t_list		*bluepill;
@@ -86,18 +76,19 @@ int	main(int argc, char **argv)
 	redpill = NULL;
 	if (argc == 1)
 		return (0);
-	if (argc == 2 && parsing_one(argv[1], &bluepill) == 0)
+	if (argc == 2 && check_str(argv[1]))
 	{
 		ft_printf("Error\n");
-		freeing(&bluepill, &redpill);
 		return (0);
 	}
-	if (argc >= 3 && parsing_two(argv, &bluepill) == 0)
+	if ((argc == 2 && parsing_one(argv[1], &bluepill) == 0)
+		|| (argc >= 3 && parsing_two(argv, &bluepill) == 0))
 	{
 		ft_printf("Error\n");
-		freeing(&bluepill, &redpill);
-		return (0);
+		return (freeing(&bluepill, &redpill), 0);
 	}
+	if (is_sorted(bluepill) || ft_lstsize(bluepill) == 1)
+		return (freeing(&bluepill, &redpill), 0);
 	solving(&bluepill, &redpill, &data);
 	freeing(&bluepill, &redpill);
 	return (0);

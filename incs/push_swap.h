@@ -6,15 +6,13 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 23:44:49 by nsartral          #+#    #+#             */
-/*   Updated: 2022/05/31 03:00:52 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/05/31 06:02:52 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include <stdlib.h>
-# include <unistd.h>
 # include "ft_printf.h"
 
 typedef struct s_list
@@ -38,15 +36,15 @@ typedef struct s_struct
 void		sa(t_list *bluepill);
 void		sb(t_list *redpill);
 void		ss(t_list *bluepill, t_list *redpill);
-void		pa(t_list **bluepill, t_list **redpill);
-void		pb(t_list **bluepill, t_list **redpill);
+int			pa(t_list **bluepill, t_list **redpill);
+int			pb(t_list **bluepill, t_list **redpill);
 void		rr(t_list **bluepill, t_list **redpill);
 void		rb(t_list **redpill);
 void		ra(t_list **bluepill);
 void		rra(t_list **bluepill, t_struct *data);
 void		rrb(t_list **redpill, t_struct *data);
 void		rrr(t_list **bluepill, t_list **redpill, t_struct *data);
-void		cover(t_list **bluepill, t_list **redpill);
+int			cover(t_list **bluepill, t_list **redpill);
 void		sorting(t_list **bluepill, t_list **redpill, t_struct *data);
 void		solving(t_list **bluepill, t_list **redpill, t_struct *data);
 char		**ft_split(char const *s, char c);
@@ -68,10 +66,12 @@ void		sort_five(t_list **bluepill, t_list **redpill, t_struct *data);
 void		sort_four(t_list **bluepill, t_list **redpill, t_struct *data);
 void		sort_special(t_list **bluepill, t_list **redpill, t_struct *data);
 void		sort_two(t_list **bluepill);
-void		sort_three(t_list **bluepill, t_struct *data);
+void		sort_three_one(t_list **bluepill, t_struct *data);
+void		sort_three_two(t_list **bluepill, t_struct *data);
 void		method_one(t_list *bluepill, t_struct *data);
 void		apply_one(t_list **bluepill, t_list **redpill, t_struct *data);
-
-void		printing(t_list *bluepill, t_list *redpill);
+void		freeing(t_list **bluepill, t_list **redpill);
+int			check_str(char *str);
+int			is_sorted(t_list *bluepill);
 
 #endif

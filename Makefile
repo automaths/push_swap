@@ -3,6 +3,7 @@ SRCS			=	./srcs/push_swap.c \
 					./srcs/special_case_two.c \
 					./srcs/utils_bits.c \
 					./srcs/utils_lst.c \
+					./srcs/utils_check.c \
 					./srcs/utils_stack.c \
 					./srcs/moves_one.c \
 					./srcs/moves_two.c \

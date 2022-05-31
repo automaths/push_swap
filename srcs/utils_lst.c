@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/22 00:51:32 by nsartral          #+#    #+#             */
-/*   Updated: 2022/05/30 23:18:38 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/05/31 04:43:27 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ t_list	*ft_lstmap(t_list *lst)
 	while (lst)
 	{
 		cpy = ft_lstnew(lst->content);
+		if (cpy == NULL)
+			return (NULL);
 		ft_lstadd_back(&new, cpy);
 		lst = lst->next;
 	}

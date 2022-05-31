@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/22 02:16:04 by nsartral          #+#    #+#             */
-/*   Updated: 2022/05/31 03:42:50 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/05/31 05:15:40 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,23 @@ int	check_duplicates(t_list **bluepill)
 	return (1);
 }
 
-int	parsing_one(char *str, t_list **bluepill)
+void	free_split(char **split)
 {
-	char		**split;
-	int			i;
-	t_list		*tmp;
+	int	i;
 
-	split = ft_split(str, ' ');
-	*bluepill = ft_lstnew(ft_atoi(split[0]));
-	tmp = *bluepill;
+	i = 0;
+	while (split[i])
+	{
+		free(split[i]);
+		i++;
+	}
+	free(split);
+}
+
+int	fill_list(char **split, t_list **bluepill)
+{
+	int	i;
+
 	i = 1;
 	while (split[i])
 	{
@@ -54,14 +62,32 @@ int	parsing_one(char *str, t_list **bluepill)
 		(*bluepill) = (*bluepill)->next;
 		i++;
 	}
-	*bluepill = tmp;
-	i = 0;
-	while (split[i])
+	return (1);
+}
+
+int	parsing_one(char *str, t_list **bluepill)
+{
+	char		**split;
+	t_list		*tmp;
+
+	*bluepill = NULL;
+	split = ft_split(str, ' ');
+	if (split == NULL)
+		return (0);
+	*bluepill = ft_lstnew(ft_atoi(split[0]));
+	if (*bluepill == NULL)
 	{
-		free(split[i]);
-		i++;
+		free_split(split);
+		return (0);
 	}
-	free(split);
+	tmp = *bluepill;
+	if (fill_list(split, bluepill) == 0)
+	{
+		free_split(split);
+		return (0);
+	}
+	*bluepill = tmp;
+	free_split(split);
 	if (check_duplicates(bluepill) == 0)
 		return (0);
 	return (1);
@@ -73,6 +99,8 @@ int	parsing_two(char **argv, t_list **bluepill)
 	t_list		*tmp;
 
 	*bluepill = ft_lstnew(ft_atoi(argv[1]));
+	if (*bluepill == NULL)
+		return (0);
 	tmp = *bluepill;
 	i = 2;
 	while (argv[i])
