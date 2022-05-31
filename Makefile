@@ -1,4 +1,13 @@
-SRCS			=	./srcs/push_swap.c ./srcs/special_case_one.c ./srcs/special_case_two.c ./srcs/utils_bits.c ./srcs/utils_lst.c ./srcs/utils_stack.c ./srcs/moves_one.c ./srcs/moves_two.c ./srcs/moves_three.c ./srcs/spliting.c 
+SRCS			=	./srcs/push_swap.c \
+					./srcs/special_case_one.c \
+					./srcs/special_case_two.c \
+					./srcs/utils_bits.c \
+					./srcs/utils_lst.c \
+					./srcs/utils_stack.c \
+					./srcs/moves_one.c \
+					./srcs/moves_two.c \
+					./srcs/moves_three.c \
+					./srcs/spliting.c 
 
 OBJS			= 	$(SRCS:.c=.o)
 
@@ -14,7 +23,6 @@ all:			$(NAME)
 
 $(NAME):		$(OBJS)
 				gcc $(CFLAGS) -g3 -o $(NAME) $(OBJS) $(LIBS)
-				$(RM) $(OBJS)
 
 clean:
 				$(RM) $(OBJS)

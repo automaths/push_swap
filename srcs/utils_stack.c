@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/22 02:16:04 by nsartral          #+#    #+#             */
-/*   Updated: 2022/05/31 03:30:31 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/05/31 03:42:50 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,17 +55,15 @@ int	parsing_one(char *str, t_list **bluepill)
 		i++;
 	}
 	*bluepill = tmp;
-	if (check_duplicates(bluepill) == 0)
+	i = 0;
+	while (split[i])
 	{
-		i = 0;
-		while (split[i])
-		{
-			free(split[i]);
-			i++;
-		}
-		free(split);
-		return (0);
+		free(split[i]);
+		i++;
 	}
+	free(split);
+	if (check_duplicates(bluepill) == 0)
+		return (0);
 	return (1);
 }
 
