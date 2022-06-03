@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 05:07:17 by nsartral          #+#    #+#             */
-/*   Updated: 2022/06/03 23:33:58 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/06/03 23:35:20 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	check_argv(int argc, char **argv)
 	i = 1;
 	while (i < argc)
 	{
-		if (check_num(argv[1] == 0))
+		if (check_num(argv[1]) == 0)
 			return (0);
 		i++;
 	}
