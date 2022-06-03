@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 05:07:17 by nsartral          #+#    #+#             */
-/*   Updated: 2022/06/03 23:35:20 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/06/03 23:39:01 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@ int	check_num(const char *str)
 	x = 0;
 	while (str[i] >= '0' && str[i] <= '9')
 	{
+		x = (x * 10) + (str[i++] - '0');
 		if (x * t > 2147483647)
 			return (0);
 		if (x * t < -2147483648)
 			return (0);
-		x = (x * 10) + (str[i++] - '0');
 	}
 	x *= t;
 	return (1);
@@ -40,11 +40,12 @@ int	check_num(const char *str)
 
 int	check_argv(int argc, char **argv)
 {
-	int i;
+	int	i;
+
 	i = 1;
 	while (i < argc)
 	{
-		if (check_num(argv[1]) == 0)
+		if (check_num(argv[i]) == 0)
 			return (0);
 		i++;
 	}
