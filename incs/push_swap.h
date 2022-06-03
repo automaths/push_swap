@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 23:44:49 by nsartral          #+#    #+#             */
-/*   Updated: 2022/06/03 23:34:43 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/06/04 01:08:58 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,5 +75,6 @@ int			check_str(char *str);
 int			is_sorted(t_list *bluepill);
 int			check_argv(int argc, char **argv);
 int			check_num(const char *str);
+int			check_str_arg(char *str);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 02:53:28 by nsartral          #+#    #+#             */
-/*   Updated: 2022/05/30 03:20:31 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/06/04 01:17:08 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,24 @@ void	rr(t_list **bluepill, t_list **redpill)
 		free(tmp);
 	}
 	ft_printf("rr\n");
+}
+
+int	check_str_arg(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		while (str[i] && str[i] == ' ')
+			i++;
+		while (str[i] && str[i] != ' ')
+		{
+			if ((str[i] < '0' || str[i] > '9')
+			&& str[i] != '-' && str[i] != '+')
+				return (0);
+			i++;
+		}
+	}
+	return (1);
 }
