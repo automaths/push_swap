@@ -1,28 +1,29 @@
-SRCS			=	./srcs/push_swap.c \
-					./srcs/special_case_one.c \
-					./srcs/special_case_two.c \
-					./srcs/utils_bits.c \
-					./srcs/utils_lst.c \
-					./srcs/utils_check.c \
-					./srcs/utils_stack.c \
-					./srcs/moves_one.c \
-					./srcs/moves_two.c \
-					./srcs/moves_three.c \
-					./srcs/spliting.c 
+SRCS			=	./push_swap.c \
+					./special_case_one.c \
+					./special_case_two.c \
+					./utils_bits.c \
+					./utils_lst.c \
+					./utils_check.c \
+					./utils_stack.c \
+					./moves_one.c \
+					./moves_two.c \
+					./moves_three.c \
+					./spliting.c 
 
 OBJS			= 	$(SRCS:.c=.o)
 
-LIBS			= 	./srcs/libftprintf.a
+LIBS			= 	-L ./ft_printf -lftprintf
 
 CC				= 	gcc
 RM				= 	rm -f
-CFLAGS			= 	-Wall -Wextra -Werror -I./incs
+CFLAGS			= 	-Wall -Wextra -Werror
 
 NAME			= 	push_swap
 
 all:			$(NAME)
 
 $(NAME):		$(OBJS)
+				@make -C ./ft_printf
 				gcc $(CFLAGS) -g3 -o $(NAME) $(OBJS) $(LIBS)
 
 clean:
