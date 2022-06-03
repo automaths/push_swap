@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/22 00:51:20 by nsartral          #+#    #+#             */
-/*   Updated: 2022/05/31 05:58:45 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/06/03 23:33:02 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int	main(int argc, char **argv)
 	redpill = NULL;
 	if (argc == 1)
 		return (0);
-	if (argc == 2 && check_str(argv[1]))
+	if ((argc == 2 && check_str(argv[1])) || check_argv(argc, argv) == 0)
 	{
 		ft_printf("Error\n");
 		return (0);
