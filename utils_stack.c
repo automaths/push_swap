@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/22 02:16:04 by nsartral          #+#    #+#             */
-/*   Updated: 2022/06/04 01:48:59 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/06/04 02:38:49 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ int	fill_list(char **split, t_list **bluepill)
 	int	i;
 
 	i = 1;
+	if (split[0] == NULL)
+		return (0);
 	while (split[i])
 	{
 		if (ft_atoi(split[i]) == 0 && (split[i][0] != '0'
