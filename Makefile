@@ -5,6 +5,8 @@ SRCS			=	./push_swap.c \
 					./utils_lst.c \
 					./utils_check.c \
 					./utils_stack.c \
+					./utils_more.c \
+					./utils_more2.c \
 					./moves_one.c \
 					./moves_two.c \
 					./moves_three.c \

@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 05:07:17 by nsartral          #+#    #+#             */
-/*   Updated: 2022/06/07 05:50:31 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/06/07 08:44:50 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,30 @@ int	check_num(const char *str)
 		if ((x * t > 2147483647) || (x * t < -2147483648))
 			return (0);
 	}
-	if (x == 0 && (str[0] != '0' || (str[0] == '+' && str[0] != '0')
-			|| (str[0] == '-' && str[0] != '0')))
+	if (x == 0 && is_special_char(str) == 0)
 		return (0);
+	return (1);
+}
+
+int	check_signs(char *str)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (str[i])
+	{
+		if (str[i] == ' ')
+			j = 0;
+		if (j > 1)
+			return (0);
+		if (j == 1 && (str[0] != '+' || str[0] != '-'))
+			return (0);
+		if (str[i] == '-' || str[i] == '+')
+			j++;
+		i++;
+	}
 	return (1);
 }
 
@@ -88,19 +109,6 @@ int	check_str(char *str)
 		if (str[i] >= '0' && str[i] <= '9')
 			return (0);
 		i++;
-	}
-	return (1);
-}
-
-int	is_sorted(t_list *bluepill)
-{
-	if (!bluepill)
-		return (1);
-	while (bluepill->next != NULL)
-	{
-		if (bluepill->content > bluepill->next->content)
-			return (0);
-		bluepill = bluepill->next;
 	}
 	return (1);
 }

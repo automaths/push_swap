@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 23:44:49 by nsartral          #+#    #+#             */
-/*   Updated: 2022/06/07 05:50:50 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/06/07 08:30:55 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,15 @@ void		sb(t_list *redpill);
 void		ss(t_list *bluepill, t_list *redpill);
 int			pa(t_list **bluepill, t_list **redpill);
 int			pb(t_list **bluepill, t_list **redpill);
-void		rr(t_list **bluepill, t_list **redpill);
-void		rb(t_list **redpill);
-void		ra(t_list **bluepill);
-void		rra(t_list **bluepill, t_struct *data);
-void		rrb(t_list **redpill, t_struct *data);
+int			rr(t_list **bluepill, t_list **redpill);
+int			rb(t_list **redpill);
+int			ra(t_list **bluepill);
+int			rra(t_list **bluepill, t_struct *data);
+int			rrb(t_list **redpill, t_struct *data);
 void		rrr(t_list **bluepill, t_list **redpill, t_struct *data);
 int			cover(t_list **bluepill, t_list **redpill);
-void		sorting(t_list **bluepill, t_list **redpill, t_struct *data);
-void		solving(t_list **bluepill, t_list **redpill, t_struct *data);
+int			sorting(t_list **bluepill, t_list **redpill, t_struct *data);
+int			solving(t_list **bluepill, t_list **redpill, t_struct *data);
 char		**ft_split(char const *s, char c);
 int			to_power(int nb, int power);
 int			find_max_rank(t_list *bluepill);
@@ -72,9 +72,12 @@ void		method_one(t_list *bluepill, t_struct *data);
 void		apply_one(t_list **bluepill, t_list **redpill, t_struct *data);
 void		freeing(t_list **bluepill, t_list **redpill);
 int			check_str(char *str);
+int			is_special_char(const char *str);
 int			is_sorted(t_list *bluepill);
 int			check_argv(int argc, char **argv);
 int			check_num(const char *str);
+int			check_sign_one(char *str);
+int			check_sign_two(char **argv);
 int			check_str_arg(char *str);
 int			check_argv2(char **argv);
 int			check_syntax(const char *str);
