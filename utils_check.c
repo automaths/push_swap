@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 05:07:17 by nsartral          #+#    #+#             */
-/*   Updated: 2022/06/04 02:41:19 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/06/07 05:50:31 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ int	check_num(const char *str)
 	t = 1;
 	i = 0;
 	if (str[0] == 0)
+		return (0);
+	if (check_syntax(str) == 0)
 		return (0);
 	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
 		i++;

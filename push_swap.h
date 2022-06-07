@@ -6,7 +6,7 @@
 /*   By: nsartral <nsartral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 23:44:49 by nsartral          #+#    #+#             */
-/*   Updated: 2022/06/04 01:49:38 by nsartral         ###   ########.fr       */
+/*   Updated: 2022/06/07 05:50:50 by nsartral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,5 +77,6 @@ int			check_argv(int argc, char **argv);
 int			check_num(const char *str);
 int			check_str_arg(char *str);
 int			check_argv2(char **argv);
+int			check_syntax(const char *str);
 
 #endif
